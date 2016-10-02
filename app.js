@@ -1,4 +1,5 @@
 var express = require('express');
+var cors = require('cors');
 var app = express();
 var Twitter = require('twitter');
 
@@ -20,11 +21,18 @@ var client = new Twitter({
 
 var twitterScreenName = process.env.SCREEN_NAME;
 
-app.get('/', function(req, res) {
+var corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on
+};
+
+var options = cors(corsOptions);
+
+app.get('/', options, function(req, res) {
     res.send('Sup?');
 });
 
-app.get('/twitter/favorites/list', function(req, res) {
+app.get('/twitter/favorites/list', options, function(req, res) {
     // Access twitter client
     client.get('favorites/list', function(error, tweets, response) {
         // Send error if occurred
@@ -47,7 +55,7 @@ app.get('/twitter/favorites/list', function(req, res) {
     });
 });
 
-app.get('/twitter/users/show', function(req, res) {
+app.get('/twitter/users/show', options, function(req, res) {
     // Access twitter client
     var params = {
         screen_name: twitterScreenName
