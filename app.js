@@ -2,9 +2,9 @@ var express = require('express');
 var app = express();
 var Twitter = require('twitter');
 
-require('dotenv').config({
-    path: ".config.env"
-});
+/*require('dotenv').config({
+    path: ".config_.env"
+});*/
 
 // TODO: Load twitter keys from env
 var apiKey = process.env.TWITTER_API_KEY;
