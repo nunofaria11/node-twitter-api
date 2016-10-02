@@ -18,14 +18,16 @@ var client = new Twitter({
     access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
+var twitterScreenName = process.env.SCREEN_NAME;
+
 app.get('/', function(req, res) {
     res.send('Sup?');
 });
 
 app.get('/twitter/favorites/list', function(req, res) {
-	// Access twitter client
-    client.get('favorites/list', function(error, tweets, response) {
-    	// Send error if occurred
+    // Access twitter client
+    client.get('favorites/list', function(error, tweets, respon1) {
+        // Send error if occurred
         if (error) {
             res.status(500).send({
                 error: error
@@ -34,8 +36,34 @@ app.get('/twitter/favorites/list', function(req, res) {
         }
 
         // Respond with data
-        if (response.statusCode === 200) {        	
+        if (response.statusCode === 200) {
             res.json(tweets);
+        } else {
+            res.status(500).send({
+                error: "Invalid status " + response.statusCode
+            });
+        }
+
+    });
+});
+
+app.get('/twitter/users/show', function(req, res) {
+    // Access twitter client
+    var params = {
+        screen_name: twitterScreenName
+    };
+    client.get('users/show', params, function(error, data, response) {
+        // Send error if occurred
+        if (error) {
+            res.status(500).send({
+                error: error
+            });
+            return;
+        }
+
+        // Respond with data
+        if (response.statusCode === 200) {
+            res.json(data);
         } else {
             res.status(500).send({
                 error: "Invalid status " + response.statusCode
