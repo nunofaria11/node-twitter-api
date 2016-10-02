@@ -26,7 +26,7 @@ app.get('/', function(req, res) {
 
 app.get('/twitter/favorites/list', function(req, res) {
     // Access twitter client
-    client.get('favorites/list', function(error, tweets, respon1) {
+    client.get('favorites/list', function(error, tweets, response) {
         // Send error if occurred
         if (error) {
             res.status(500).send({
