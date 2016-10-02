@@ -1,6 +1,6 @@
 # NodeJS Twitter API
 
-[![Heroku](https://heroku-badge.herokuapp.com/?app=node-twitter-api)](https://node-twitter-api.herokuapp.com/?app=node-twitter-api)
+[![Heroku](https://heroku-badge.herokuapp.com/?app=node-twitter-api)](https://node-twitter-api.herokuapp.com)
 
 Just a simple personal Twitter API reader implementation.
 
