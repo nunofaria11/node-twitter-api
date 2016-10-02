@@ -7,6 +7,7 @@ Just a simple personal Twitter API reader implementation.
 ## Supported API
 
 - `/twitter/favorites/list`
+- `/twitter/users/show`
 
 ## Install and dependencies
 ```
